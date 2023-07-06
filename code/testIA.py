@@ -7,7 +7,7 @@ from dlgo import mcts
 
 encoder = OnePlaneEncoder((9, 9))
 
-model = keras.models.load_model("deep6.h5")
+model = keras.models.load_model("deep7.h5")
 
 deep = DeepLearningAgent(model, encoder)
 

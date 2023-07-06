@@ -25,7 +25,7 @@ class LocalGtpBot:
         self.bot = TerminationAgent(go_bot, termination)  # <1>
         self.handicap = handicap
         self._stopped = False  # <2>
-        self.game_state = GameState.new_game(19)
+        self.game_state = GameState.new_game(9)
         self.sgf = SGFWriter(output_sgf)  # <3>
 
         self.our_color = Player.black if our_color == 'b' else Player.white
@@ -78,14 +78,14 @@ class LocalGtpBot:
 
 # tag::play_local_run[]
     def run(self):
-        self.command_and_response("boardsize 19\n")
+        self.command_and_response("boardsize 9\n")
         self.set_handicap()
         self.play()
         self.sgf.write_sgf()
 
     def set_handicap(self):
         if self.handicap == 0:
-            self.command_and_response("komi 7.5\n")
+            self.command_and_response("komi 5.5\n")
             self.sgf.append("KM[7.5]\n")
         else:
             stones = self.command_and_response("fixed_handicap {}\n".format(self.handicap))
